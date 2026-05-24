@@ -17,7 +17,7 @@ export default function Form() {
     formdata.append("subject", subject);
     formdata.append("message", message);
 
-    axios.post('http://localhost:8000/register', formdata)
+    axios.post('https://portfolio-tours-core.onrender.com/register', formdata)
       .then(function (res) {
 
         if (res?.data.status === 1) {
