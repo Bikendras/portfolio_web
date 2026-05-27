@@ -1,48 +1,118 @@
 .footer {
-    width: 100%;
-    padding: 2rem 0;
-    /* background-color:rgba(19, 19, 19, 0.8) ; */
+  width: 100%;
+  padding: 3rem 1.5rem 1.5rem;
+  background: linear-gradient(180deg, #ecfdf5, #d1fae5);
+  position: relative;
 }
-.footer-container{
-    max-width: 1140px;
-    margin: auto;
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    grid-gap:40px;
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
 }
-.left{
-    height: 100%;
-    max-width: 100%;
-    display: flex;
-    flex-direction: column;
-    padding:1rem;
+
+.left,
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
-.location{
-    display: flex;
-    margin-bottom: 0.8rem;
+
+.location,
+.phone,
+.email {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #334155;
 }
-.location p{
-    line-height: 30px;
+
+.location svg,
+.phone svg,
+.email svg {
+  color: #059669;
+  flex-shrink: 0;
 }
-.right{
-    height: 100%;
-    max-width: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
+
+.email a {
+  color: #059669;
+  transition: color 0.3s ease;
 }
-.social{
-    margin-top: 1rem;
+
+.email a:hover {
+  color: #047857;
 }
-h4{
-    font-size: 1.1rem;
-    padding-bottom:0.7rem;
+
+.right h4 {
+  font-size: 1.25rem;
+  color: #0f172a;
+  margin: 0;
 }
-p{
-   font-size: 1.1rem;
+
+.right p {
+  color: #475569;
+  margin: 0;
+  line-height: 1.7;
 }
-@media screen and (max-width: 640px){
-    .footer-container{ 
-        grid-template-columns: 1fr;
-    }
+
+.social {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.social a {
+  color: #059669;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social a:hover {
+  transform: translateY(-3px);
+  color: #047857;
+}
+
+.footer-copy {
+  text-align: center;
+  color: #64748b;
+  font-size: 0.9rem;
+  margin: 2rem 0 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(5, 150, 105, 0.2);
+}
+
+.resume-float {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 52px;
+  height: 52px;
+  background: #dc2626;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.75rem;
+  box-shadow: 0 8px 24px rgba(220, 38, 38, 0.4);
+  transition: all 0.3s ease;
+  z-index: 999;
+}
+
+.resume-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 32px rgba(220, 38, 38, 0.5);
+}
+
+@media screen and (max-width: 640px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+  }
+
+  .resume-float {
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
 }

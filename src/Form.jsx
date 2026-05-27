@@ -1,100 +1,162 @@
-import "./Form.css";
+import './Form.css';
 import React, { useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
+import { profile } from './Data';
+
+const API_URL =
+  process.env.REACT_APP_API_URL ||
+  (process.env.NODE_ENV === 'production'
+    ? 'https://portfolio-tours-core.onrender.com'
+    : 'http://localhost:8000');
 
 export default function Form() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [subject, setSubject] = useState("");
-  const [message, setMessage] = useState("");
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = () => {
-    const formdata = new FormData();
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
-    formdata.append("name", name);
-    formdata.append("email", email);
-    formdata.append("subject", subject);
-    formdata.append("message", message);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    axios.post('https://portfolio-tours-core.onrender.com/register', formdata)
-      .then(function (res) {
+    const { name, email, subject, message } = formData;
 
-        if (res?.data.status === 1) {
-
-          setTimeout(() => {
-            Swal.fire({
-              position: "center",
-              icon: "success",
-              title: res?.data?.message,
-              showConfirmButton: true,
-            });
-          }, 1000);
-
-        } else {
-
-          Swal.fire({
-            position: "center",
-            icon: "error",
-            title: res?.data?.message,
-            showConfirmButton: false,
-            timer: 1500,
-          });
-
-        }
-
-      }).catch(function (err) {
-        console.log("Backend Error", err);
+    if (!name || !email || !subject || !message) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Please fill all fields',
+        showConfirmButton: true,
       });
+      return;
+    }
+
+    const payload = new FormData();
+    payload.append('name', name);
+    payload.append('email', email);
+    payload.append('subject', subject);
+    payload.append('message', message);
+
+    setLoading(true);
+
+    try {
+      const res = await axios.post(`${API_URL}/register`, payload);
+
+      if (res?.data?.status === 1) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Message Sent!',
+          text: res?.data?.message || 'Thank you for reaching out. I will get back to you soon.',
+          showConfirmButton: true,
+        });
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: res?.data?.message || 'Something went wrong',
+          showConfirmButton: true,
+        });
+      }
+    } catch (err) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Unable to send message',
+        text: 'Please try again later or email me directly.',
+        showConfirmButton: true,
+      });
+      console.error('Backend Error', err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="skill_1">
-
-      <div className='skill_Tech'>
-        <h1>Contact</h1>
+    <div className="contact-wrapper">
+      <div className="section-header">
+        <h2 className="section-title">Contact</h2>
+        <span className="section-line" />
+        <p className="section-subtitle">Have a project in mind? Let&apos;s talk.</p>
       </div>
 
-      <div className='form'>
+      <div className="contact-grid">
+        <div className="contact-info">
+          <div className="contact-info-card">
+            <FaMapMarkerAlt />
+            <div>
+              <h4>Location</h4>
+              <p>{profile.location}</p>
+            </div>
+          </div>
+          <div className="contact-info-card">
+            <FaPhone />
+            <div>
+              <h4>Phone</h4>
+              <p>{profile.phone}</p>
+            </div>
+          </div>
+          <div className="contact-info-card">
+            <FaEnvelope />
+            <div>
+              <h4>Email</h4>
+              <p>{profile.email}</p>
+            </div>
+          </div>
+        </div>
 
-        <label>Your Name</label>
+        <form className="form" onSubmit={handleSubmit}>
+          <label htmlFor="name">Your Name</label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            placeholder="Enter your name"
+            value={formData.name}
+            onChange={handleChange}
+          />
 
-        <input
-          type="text"
-          placeholder="Enter your Name"
-          onChange={(e) => setName(e.target.value)}
-        />
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="Enter your email"
+            value={formData.email}
+            onChange={handleChange}
+          />
 
-        <label>Email</label>
+          <label htmlFor="subject">Subject</label>
+          <input
+            id="subject"
+            name="subject"
+            type="text"
+            placeholder="Enter your subject"
+            value={formData.subject}
+            onChange={handleChange}
+          />
 
-        <input
-          type="email"
-          placeholder="Enter your Email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
+          <label htmlFor="message">Message</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="6"
+            placeholder="Type your message here..."
+            value={formData.message}
+            onChange={handleChange}
+          />
 
-        <label>Subject</label>
-
-        <input
-          type="text"
-          placeholder="Enter your Subject"
-          onChange={(e) => setSubject(e.target.value)}
-        />
-
-        <label>Message</label>
-
-        <textarea
-          rows="6"
-          placeholder="Type your message here!!"
-          onChange={(e) => setMessage(e.target.value)}
-        />
-
-        <button className="btn" onClick={handleSubmit}>
-          Submit
-        </button>
-
+          <button type="submit" className="btn btn-primary btn-submit" disabled={loading}>
+            {loading ? 'Sending...' : 'Submit'}
+          </button>
+        </form>
       </div>
-
     </div>
   );
 }
