@@ -116,7 +116,7 @@ export const projects = [
     description:
       'Full-stack rental management platform for inventory tracking, warehouse operations, deliveries, collections, and reporting with damage reporting and advanced dashboards.',
     tech: 'React.js, Node.js, Fastify, Postgres, REST APIs',
-    liveUrl: 'https://www.cloudrent.me/',
+    liveUrl: 'https://app.onlinerentalstore.com/',
     githubUrl: '',
   },
   {
@@ -127,7 +127,7 @@ export const projects = [
     description:
       'Online marketplace where users create product listings, buy/sell products, chat in real time, and receive notifications with Stripe payment integration.',
     tech: 'Next.js, MongoDB, Stripe, Real-Time Chat, REST APIs',
-    liveUrl: 'https://stagematch.app/',
+    liveUrl: 'https://stagematch.fr/',
     githubUrl: '',
   },
   {
