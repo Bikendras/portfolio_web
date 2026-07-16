@@ -15,7 +15,7 @@ export const profile = {
   location: 'Gram Post Bihta, Dist Satna, MP',
   summary:
     'Dedicated Software Developer with expertise in MERN Stack, Next.js, REST APIs, and database management. Experienced in developing real-time and scalable applications for international clients. Seeking a challenging role to deliver high-quality software solutions and support organizational success.',
-  resumeUrl: '/BK_CV.pdf',
+  resumeUrl: '/RESUME_F.pdf',
 };
 
 export const links = [
