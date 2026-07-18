@@ -149,7 +149,7 @@ export const projects = [
     description:
       'Digital audio streaming platform for accessing and managing audiobook content with optimized playback, real-time interactions, and cloud-based media delivery.',
     tech: 'React.js, Redux, Node.js, Express.js, Postgres, WebSockets, AWS',
-    liveUrl: 'https://suhavibooks.com/',
+    liveUrl: 'https://www.suhaviaudiobooks.com/',
     githubUrl: '',
   },
 ];
