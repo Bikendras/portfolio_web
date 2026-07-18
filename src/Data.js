@@ -111,7 +111,7 @@ export const projects = [
   {
     id: 1,
     title: 'CloudRent – Rental Management Platform',
-    image: 'pexels-photo-326503.webp',
+    image: 'cloudrent.png',
     role: 'Full Stack MERN Developer',
     description:
       'Full-stack rental management platform for inventory tracking, warehouse operations, deliveries, collections, and reporting with damage reporting and advanced dashboards.',
@@ -122,7 +122,7 @@ export const projects = [
   {
     id: 2,
     title: 'StageMatch – Marketplace Platform',
-    image: 'pexels-photo-2148222.webp',
+    image: 'stagematch.jpeg',
     role: 'Senior MERN Stack Developer',
     description:
       'Online marketplace where users create product listings, buy/sell products, chat in real time, and receive notifications with Stripe payment integration.',
@@ -133,7 +133,7 @@ export const projects = [
   {
     id: 3,
     title: 'Little Big Shed – Resource Sharing Platform',
-    image: 'pexels-photo-12883026.webp',
+    image: 'LBS.jpeg',
     role: 'MERN Stack Developer',
     description:
       'Community-driven resource sharing platform enabling users to list, discover, and exchange tools and resources with secure transactions and optimized API performance.',
@@ -144,7 +144,7 @@ export const projects = [
   {
     id: 4,
     title: 'Suhavi Audio Books – Streaming Platform',
-    image: 'pexels-photo-326503.webp',
+    image: 'SUHAVI.png',
     role: 'MERN Stack Developer',
     description:
       'Digital audio streaming platform for accessing and managing audiobook content with optimized playback, real-time interactions, and cloud-based media delivery.',
